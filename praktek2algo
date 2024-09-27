@@ -1,0 +1,54 @@
+#Latihan 1 Prak Algo 2
+import math
+a = int(input("Masukkan nilai a : "))
+b = int(input("Masukkan nilai b : "))
+sum = a + b
+seli = b - a
+mult = a * b
+mod = a % b
+div = a / b
+loga = math.log10(a)
+logb = math.log10(b)
+pang = a ** b
+
+print("Hasil penjumlahan adalah : ", sum)
+print("Hasil pengurangan adalah : ", seli)
+print("Hasil perkalian adalah : ", mult)
+print("Hasil sisa pembagian adalah : ", mod)
+print("Hasil pembagian adalah : ", div)
+print("Nilai log10 dari a adalah : ", loga)
+print("Nilai log10 dari b adalah : ", logb)
+print(f"Nilai {a} dipangkatkan dengan {b} adalah : ", pang)
+
+
+#Latihan 2 Prak Algo 2
+import math
+
+# Masukkan koordinat dalam derajat
+lat1 = float(input("Masukkan lintang titik pertama: "))#coba masukkan lintang dan bujur jakarta, lintang :-6.2 dan bujur : 106.816
+lon1 = float(input("Masukkan bujur titik pertama: "))
+lat2 = float(input("Masukkan lintang titik kedua: "))#coba masukkan lintang dan bujur surabaya, lintang : -7.250445 dan bujur : 112.768845
+lon2 = float(input("Masukkan bujur titik kedua: "))
+
+# Radius Bumi dalam kilometer
+R = 6371.0
+
+# Mengonversi derajat ke radian
+lat1 = math.radians(lat1)
+lon1 = math.radians(lon1)
+lat2 = math.radians(lat2)
+lon2 = math.radians(lon2)
+
+# Menghitung perbedaan lintang dan bujur
+dlat = lat2 - lat1
+dlon = lon2 - lon1
+
+# Menggunakan rumus Haversine
+a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+# Menghitung jarak
+jarak = R * c
+
+# Menampilkan hasil
+print(f"Jarak antara dua titik adalah {jarak:.2f} kilometer.")

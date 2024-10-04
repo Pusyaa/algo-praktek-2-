@@ -1,0 +1,38 @@
+#Latihan 1 
+a = float(input("Masukkan panjang sisi pertama: "))
+b = float(input("Masukkan panjang sisi kedua: "))
+c = float(input("Masukkan panjang sisi ketiga: "))
+
+if a + b > c and a + c > b and b + c > a:
+    if a == b == c:
+        printf(f"Segitiga dengan Panjang sisi {a}, {b}, {c} adalah Segitiga sama sisi")
+    elif a == b or b == c or a == c:
+        print(f"Segitiga dengan Panjang sisi {a}, {b}, {c} adalah Segitiga sama kaki")
+    else:
+        print(f"Segitiga dengan Panjang sisi {a}, {b}, {c} adalah Segitiga sembarang")
+else:
+    print("Tidak bisa membentuk segitiga")
+
+#Latihan 2
+import math
+
+a = float(input("Masukkan nilai a: "))
+b = float(input("Masukkan nilai b: "))
+c = float(input("Masukkan nilai c: "))
+
+#Menghitung determinan
+determinant = (b**2) - (4*a*c)
+print(f"Determinannya adalah: {determinant}")
+
+if determinant > 0:
+    root1 = (-b + math.sqrt(determinant)) / (2*a)
+    root2 = (-b - math.sqrt(determinant)) / (2*a)
+    print(f"Akar-akar dari persamaan adalah: {root1} dan {root2}")
+elif determinant == 0:
+    root = -b / (2*a)
+    print(f"Akar dari persamaan adalah: {root}")
+else:
+    # Akar-akar kompleks
+    real_akar = -b / (2*a)
+    imag_akar = math.sqrt(abs(determinant)) / (2*a)
+    print(f"Akar-akar dari persamaan adalah: {real_akar} + {imag_akar}i dan {real_akar} - {imag_akar}i")

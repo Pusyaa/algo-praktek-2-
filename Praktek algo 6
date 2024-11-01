@@ -1,0 +1,64 @@
+#Latihan 1
+nilai_huruf = {
+    'A': 4.00, 'A-': 3.75, 'B+': 3.50, 'B': 3.00, 'B-': 2.75,
+    'C+': 2.50, 'C': 2.00, 'C-': 1.75, 'D': 1.50, 'E': 1.25
+}
+
+# Fungsi untuk menghitung rata-rata nilai
+def hitung_rata_rata(nilai_list=None):
+    # Jika tidak ada nilai yang dimasukkan, beri pesan
+    if nilai_list is None or len(nilai_list) == 0:
+        print("Tidak ada nilai yang dimasukkan.")
+        return 0
+
+    total_poin = 0
+    for huruf in nilai_list:
+        total_poin += nilai_huruf.get(huruf, 0)  # Mengambil nilai huruf, jika tidak ditemukan gunakan 0
+
+    rata_rata = total_poin / len(nilai_list)
+    return rata_rata  # Mengembalikan nilai rata-rata
+
+# Input dari pengguna
+jumlah_matkul = int(input("Masukkan jumlah mata kuliah: "))
+nilai = []
+for i in range(jumlah_matkul):
+    huruf = input(f"Masukkan nilai huruf untuk mata pelajaran ke-{i+1}: ")
+    nilai.append(huruf)
+
+# Menggunakan fungsi hitung_rata_rata untuk mendapatkan rata-rata nilai
+hitung_rata_rata(nilai)
+nilai_rata_rata = hitung_rata_rata(nilai)
+# Menampilkan hasil
+print("Nilai rata-rata : ", nilai_rata_rata)
+
+
+
+#Latihan 2
+def cek_tahun_kabisat(tahun):
+    # Mengecek apakah tahun merupakan tahun kabisat
+    if (tahun % 4 == 0 and tahun % 100 != 0) or (tahun % 400 == 0):
+        return True
+    else:
+        return False
+
+def jumlah_hari(bulan, tahun):
+    # Menentukan jumlah hari berdasarkan bulan dan tahun
+    if bulan in [1, 3, 5, 7, 8, 10, 12]:  # Bulan dengan 31 hari
+        return 31
+    elif bulan in [4, 6, 9, 11]:          # Bulan dengan 30 hari
+        return 30
+    elif bulan == 2:                      # Februari
+        if cek_tahun_kabisat(tahun):      # Mengecek tahun kabisat
+            return 29
+        else:
+            return 28
+    else:
+        return "Bulan tidak valid"
+
+# Meminta input dari pengguna
+bulan = int(input("Masukkan bulan (1-12): "))
+tahun = int(input("Masukkan tahun: "))
+
+# Menampilkan jumlah hari
+hari = jumlah_hari(bulan, tahun)
+print(f"Jumlah hari di bulan {bulan} tahun {tahun} adalah: {hari} hari" )

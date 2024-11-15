@@ -1,0 +1,93 @@
+#Latihan 1
+# Fungsi rekursif untuk menjumlahkan daftar angka
+def jumlah_berurut(numbers):
+    if not numbers:  # Basis: jika daftar kosong, kembalikan 0
+        return 0
+    return numbers[0] + jumlah_berurut(numbers[1:])  # Rekursi
+
+# Fungsi rekursif untuk meminta input angka dari pengguna
+def ambil_angka(n):
+    if n == 0:  # Basis: jika tidak ada angka yang perlu dimasukkan, kembalikan daftar kosong
+        return []
+    angka = int(input(f"Masukkan angka ke-{n}: "))
+    return [angka] + ambil_angka(n - 1)  # Rekursi
+
+# Program utama
+jumlah = int(input("Masukkan Jumlah: "))
+angka_angka = ambil_angka(jumlah)
+hasil = jumlah_berurut(angka_angka)
+print("Hasil penjumlahan:", hasil)
+
+#Latihan 2 
+def perpangkatan(base, pangkat):
+    # Basis: jika pangkat adalah 0, hasilnya adalah 1 (apapun basisnya)
+    if pangkat == 0:
+        return 1
+    # Rekursi: jika pangkat lebih besar dari 0, lakukan perkalian base dengan hasil rekursif
+    else:
+        return base * perpangkatan(base, pangkat - 1)
+
+# Meminta input dari pengguna
+base = float(input("Masukkan base (angka awal): "))
+pangkat = int(input("Masukkan power (pangkat): "))
+
+# Menghitung hasil perpangkatan
+hasil = perpangkatan(base, pangkat)
+print(f"{base} pangkat {pangkat} = {hasil}")
+
+#latihan 3 
+# Fungsi konversi hexadecimal ke decimal
+def hex_to_decimal(hex_str):
+    # Validasi input
+    if not all(c in '0123456789ABCDEFabcdef' for c in hex_str):
+        return "Error: Input hexadecimal tidak valid."
+
+    # Fungsi rekursif konversi hexadecimal ke decimal
+    def rekursi_hex_to_decimal(hex_str, index):
+        if index == len(hex_str) - 1:
+            return int(hex_str[index], 16)
+        else:
+            return int(hex_str[index], 16) * (16 ** (len(hex_str) - index - 1)) + rekursi_hex_to_decimal(hex_str, index + 1)
+    
+    return rekursi_hex_to_decimal(hex_str, 0)
+
+# Fungsi konversi decimal ke hexadecimal
+def decimal_to_hex(decimal_num):
+    # Validasi input
+    if not isinstance(decimal_num, int) or decimal_num < 0:
+        return "Error: Input decimal tidak valid."
+
+    # Fungsi rekursif konversi decimal ke hexadecimal
+    def rekursi_decimal_to_hex(decimal_num):
+        hex_digits = '0123456789ABCDEF'
+        if decimal_num == 0:
+            return ""
+        else:
+            return rekursi_decimal_to_hex(decimal_num // 16) + hex_digits[decimal_num % 16]
+    
+    if decimal_num == 0:
+        return "0"
+    
+    return rekursi_decimal_to_hex(decimal_num)
+
+# Input dari pengguna
+print("Pilih konversi:")
+print("1. Hexadecimal ke Decimal")
+print("2. Decimal ke Hexadecimal")
+
+pilihan = input("Masukkan pilihan (1/2): ")
+
+if pilihan == '1':
+    hex_input = input("Masukkan nilai hexadecimal: ")
+    hasil = hex_to_decimal(hex_input)
+    print(f"Hasil konversi hexadecimal '{hex_input}' ke decimal: {hasil}")
+
+elif pilihan == '2':
+    try:
+        decimal_input = int(input("Masukkan nilai decimal: "))
+        hasil = decimal_to_hex(decimal_input)
+        print(f"Hasil konversi decimal '{decimal_input}' ke hexadecimal: {hasil}")
+    except ValueError:
+        print("Error: Input decimal tidak valid.")
+else:
+    print("Pilihan tidak valid.")
